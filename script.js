@@ -25,11 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Optional: Load weather for default city on startup
-    // getWeatherDataByCity('London');
 });
 
-// Function to fetch weather data
 async function getWeatherData() {
     const city = cityInput.value.trim();
     
@@ -38,7 +35,6 @@ async function getWeatherData() {
         return;
     }
     
-    // Show loading, hide other elements
     showLoading();
     hideElements();
     
@@ -53,7 +49,6 @@ async function getWeatherData() {
     }
 }
 
-// Function to fetch weather data by city name (can be used for default loading)
 async function getWeatherDataByCity(city) {
     showLoading();
     hideElements();
@@ -70,7 +65,6 @@ async function getWeatherDataByCity(city) {
     }
 }
 
-// API call function
 async function fetchWeatherData(city) {
     const response = await fetch(
         `${apiUrl}?q=${city}&appid=${apiKey}&units=metric`
@@ -89,7 +83,6 @@ async function fetchWeatherData(city) {
     return await response.json();
 }
 
-// Function to display weather data
 function displayWeatherData(data) {
     cityName.textContent = `${data.name}, ${data.sys.country}`;
     temperature.textContent = `${Math.round(data.main.temp)}°C`;
@@ -97,30 +90,25 @@ function displayWeatherData(data) {
     weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
     weatherIcon.alt = data.weather[0].description;
     
-    // Additional weather details
     feelsLike.textContent = `${Math.round(data.main.feels_like)}°C`;
     humidity.textContent = `${data.main.humidity}%`;
     windSpeed.textContent = `${data.wind.speed} m/s`;
     
-    // Show weather info
     weatherInfo.style.display = 'block';
     errorMessage.style.display = 'none';
 }
 
-// Function to show error message
 function showError(message) {
     errorMessage.textContent = message;
     errorMessage.style.display = 'block';
     weatherInfo.style.display = 'none';
 }
 
-// Function to handle errors
 function handleError(error) {
     console.error('Error fetching weather data:', error);
     showError(error.message || 'An unexpected error occurred. Please try again.');
 }
 
-// Loading state functions
 function showLoading() {
     loading.style.display = 'flex';
 }
@@ -134,7 +122,6 @@ function hideElements() {
     errorMessage.style.display = 'none';
 }
 
-// Utility function to get weather by coordinates (for future geolocation feature)
 async function getWeatherByCoords(lat, lon) {
     showLoading();
     hideElements();
@@ -159,7 +146,6 @@ async function getWeatherByCoords(lat, lon) {
     }
 }
 
-// Export functions for potential module use (if needed)
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         getWeatherData,
