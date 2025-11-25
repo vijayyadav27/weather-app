@@ -13,7 +13,7 @@ const errorMessage = document.getElementById('error-message');
 const loading = document.getElementById('loading');
 
 // API Configuration
-const apiKey = '1d13da60df2b32a08a92f7abb40fe5a0';
+const apiKey = 'd48443484e1f44f4e7a55de846261099';
 const apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 
 // Event Listeners
